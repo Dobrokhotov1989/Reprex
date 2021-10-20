@@ -1,0 +1,23 @@
+```{r include=FALSE}
+## Set working directory
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+## Child2
+
+```{r libs-2, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+
+As a workaround I can glue `here()` to the file path to be independent from current working directory. However, it is not so convenient. Setting a project options to evaluate chunks in the project directory is not an option, because it makes document dependent on the local settings.
+```{r message=FALSE}
+my_df <- read_csv(file = glue::glue("{here::here()}/Data/mpg.csv"))
+
+head(my_df) %>%
+  kable(format = "html",
+        caption = "Test data") %>%
+  kable_minimal(full_width = FALSE)
+```

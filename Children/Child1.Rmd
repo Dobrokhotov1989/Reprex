@@ -1,0 +1,24 @@
+```{r include=FALSE}
+## Set working directory
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+## Child1
+
+```{r libs-1, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+
+This chunk from child Rmd works well when document is knitted, but not when executed
+in the notebook format.
+```{r message=FALSE}
+my_df <- read_csv(file = "./Data/mpg.csv")
+
+head(my_df) %>%
+  kable(format = "html",
+        caption = "Test data") %>%
+  kable_minimal(full_width = FALSE)
+```
